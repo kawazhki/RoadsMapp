@@ -47,7 +47,8 @@
 * 収益化？
     * 後回しでOK
 # 全体図
-![Uploading 画面遷移図.jpg…]()
+https://docs.google.com/presentation/d/1QnBJOU9n0sWUDXIEdJfaHBxjHxsnzAHt9LE5M3CfCmU/edit?usp=sharing
 
+※Googleスライド
 # 詳細
 ※GoogleスライドのURLを挿入予定
