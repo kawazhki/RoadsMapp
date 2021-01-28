@@ -32,6 +32,7 @@
             * React
             * Vue
             * Svelte
+        * 書籍検索APIの実装(楽天)
     * MySQL
         * 設計工程も含む
     * PHP
@@ -50,5 +51,7 @@
 https://docs.google.com/presentation/d/1QnBJOU9n0sWUDXIEdJfaHBxjHxsnzAHt9LE5M3CfCmU/edit?usp=sharing
 
 ※Googleスライド
-# 詳細
-※GoogleスライドのURLを挿入予定
+# 画面詳細図
+https://docs.google.com/presentation/d/1dfXH0iJgmk_sqed7isi1lkJsw0tMoLrYKyhw7hQ_pqk/edit?usp=sharing
+
+※Googleスライド -> 現在計画中
