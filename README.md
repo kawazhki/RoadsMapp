@@ -2,6 +2,7 @@
 みんなの学習ロードマップを比較し、自分の目的に合ったものを参考にすることができる。
 # 製作の背景・目的
 ## 利用者
+### ターゲットはIT業界を志した人、1～2年目向け
 * どのように学習を進めば目的にたどり着けるかを知りたい
     * 学習開始時の実力
     * 学習の目的
@@ -32,7 +33,9 @@
             * React
             * Vue
             * Svelte
-        * 書籍検索APIの実装(楽天)
+        * API実装
+            * 各種アカウントの連携/ログイン機能
+            * 書籍検索API
     * MySQL
         * 設計工程も含む
     * PHP
@@ -47,11 +50,16 @@
     * MarkDown
 * 収益化？
     * 後回しでOK
-# 全体図
+# 要件定義書
+## 画面遷移図
 https://docs.google.com/presentation/d/1QnBJOU9n0sWUDXIEdJfaHBxjHxsnzAHt9LE5M3CfCmU/edit?usp=sharing
 
-※Googleスライド
-# 画面詳細図
+※Googleスライド -> 随時更新中
+## 画面詳細図
 https://docs.google.com/presentation/d/1dfXH0iJgmk_sqed7isi1lkJsw0tMoLrYKyhw7hQ_pqk/edit?usp=sharing
 
-※Googleスライド -> 現在計画中
+※Googleスライド -> 随時更新中
+
+## データ設計図
+
+※GoogleスライドURL貼り付け予定 -> 未着手
