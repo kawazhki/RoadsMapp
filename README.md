@@ -51,15 +51,16 @@
 * 収益化？
     * 後回しでOK
 # 要件定義書
+※Googleスライド -> 随時更新中
 ## 画面遷移図
 https://docs.google.com/presentation/d/1QnBJOU9n0sWUDXIEdJfaHBxjHxsnzAHt9LE5M3CfCmU/edit?usp=sharing
 
-※Googleスライド -> 随時更新中
 ## 画面詳細図
 https://docs.google.com/presentation/d/1dfXH0iJgmk_sqed7isi1lkJsw0tMoLrYKyhw7hQ_pqk/edit?usp=sharing
 
-※Googleスライド -> 随時更新中
 
 ## ER図
 https://docs.google.com/presentation/d/1VceIphc8d3Rt1ST5OI6fMGB40a4S_NIacyCzhCOGhw8/edit?usp=sharing
-※Googleスライド -> 随時更新中
+
+## テーブル設計仕様書
+https://docs.google.com/presentation/d/1sNOEwJjREj8k8KPN7iuJjY3uvT4bB2d3JHmNtHQX3LY/edit?usp=sharing
