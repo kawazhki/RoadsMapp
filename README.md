@@ -60,6 +60,6 @@ https://docs.google.com/presentation/d/1dfXH0iJgmk_sqed7isi1lkJsw0tMoLrYKyhw7hQ_
 
 ※Googleスライド -> 随時更新中
 
-## データ設計図
-
-※GoogleスライドURL貼り付け予定 -> 未着手
+## ER図
+https://docs.google.com/presentation/d/1VceIphc8d3Rt1ST5OI6fMGB40a4S_NIacyCzhCOGhw8/edit?usp=sharing
+※Googleスライド -> 随時更新中
