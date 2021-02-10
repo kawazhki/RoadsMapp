@@ -8,7 +8,7 @@
 </head>
 <body>
     <section class="containar">
-        <!--ここにロゴ挿入-->
+        <!--ここにロゴを挿入-->
         <h1>新規登録</h1>
         <!--ここにエラーメッセージを表示-->
         <form action="" method="post">
