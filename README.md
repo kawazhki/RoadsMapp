@@ -64,3 +64,12 @@ https://docs.google.com/presentation/d/1VceIphc8d3Rt1ST5OI6fMGB40a4S_NIacyCzhCOG
 
 ## テーブル設計仕様書
 https://docs.google.com/presentation/d/1sNOEwJjREj8k8KPN7iuJjY3uvT4bB2d3JHmNtHQX3LY/edit?usp=sharing
+
+# コード規約
+## 命名規則
+* クラス名
+-> パスカルケース
+* 関数名
+-> キャメルケース
+* 変数名
+-> スネークケース
