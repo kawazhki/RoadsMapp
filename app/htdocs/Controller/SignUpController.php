@@ -18,9 +18,17 @@
     */
 
     if (!empty($_POST['commit'])) {
+        //メールアドレス重複メッセージ
         $post_data = filter_input_array(INPUT_POST);
+        var_dump($post_data['user_name']);
         $err[] = isValidUserName($post_data['user_name'], $db);
-        var_dump($err);
+        $err[] = isValidEmail($post_data['email'], $db);
+        $err[] = isValidPasswd($post_data['passwd'], $db);
+
+        if(count($err) === 0) {
+            userDataSignUp($post_data, $db);
+            //以下にページ移管のコードを記載
+        }
     }
 
     include FilePath::VIEW . '/signup.php';

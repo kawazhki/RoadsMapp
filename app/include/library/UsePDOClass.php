@@ -4,8 +4,8 @@
         const DB_NAME = 'testdb';
         const HOST = 'localhost';
         const UTF = 'utf8';
-        const DB_USER_NAME = 'kawazhki';
-        const DB_PASSWD = 'dena-gogo-roadsmapp';
+        const DB_USER_NAME = 'user';
+        const DB_PASSWD = 'passwd';
 
         private $dbh;
         private $user_name;
@@ -73,9 +73,9 @@
         /**
          * user_name重複チェック
          */
-        public function userNameDuplicateCheck (string $user_name) {
+        public function userNameDuplicateCheck (): bool {
             $stt = $this->dbh->prepare('SELECT COUNT(name = :username or NULL) FROM users');
-            $stt->bindValue(':username', $user_name);
+            $stt->bindValue(':username', $this->getUserName());
             $stt->execute();
             $result = $stt->fetch(PDO::FETCH_COLUMN);
             if ($result === 0) {
@@ -86,17 +86,17 @@
         }
 
         /**
-         * email重複チェック
+         * 新規登録用INSERT処理
          */
-        public function emailDuplicateCheck (string $email) {
-            $stt = $this->dbh->prepare('SELECT COUNT(email = :email or NULL) FROM users');
-            $stt->bindValue(':email', $email);
-            $stt->execute();
-            $result = $stt->fetch(PDO::FETCH_COLUMN);
-            if ($result === 0) {
-                return true;
-            } else {
-                return false;
+        public function insertSignUpDara() {
+            try {
+                $stt = $this->dbh->prepare('INSERT INTO users(name, email, hashed_password) VALUES(:username, :email, :passwd)');
+                $stt->bindValue(':username', $this->getUserName());
+                $stt->bindValue(':email', $this->getEmail());
+                $stt->bindValue(':passwd', $this->getPasswd());
+                $stt->execute();
+            } catch(PDOException $e) {
+                print "新規登録エラー：{$e->getMessage()}";
             }
         }
     }
