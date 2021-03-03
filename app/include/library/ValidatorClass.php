@@ -19,7 +19,7 @@
          * @return string エラーメッセージ or バリデーションに掛からなければ戻り値なし
          */
         public function addUserNameCheck(string $user_name, object $db) {
-            $db->serUserName($user_name);
+            $db->setUserName($user_name);
             if (empty($user_name)) {
                 //空文字チェック
                 $this->errMsg[] = ErrMessage::USER_NAME_INPUT_RULE;
@@ -73,10 +73,10 @@
          * @param object $db PDOインスタンス
          * @return bool or array $errMsg エラーメッセージ
          */
-        public function signUpValidation(string $user_name, string $email, string $passwdm, object $db) {
+        public function signUpValidation(string $user_name, string $email, string $passwd, object $db) {
             $this->addUserNameCheck($user_name, $db);
             $this->addEmailCheck($email);
-            $this->addPasswd($passwd);
+            $this->addPasswdCheck($passwd);
 
             if (count($this->errMsg) === 0) {
                 return true;
