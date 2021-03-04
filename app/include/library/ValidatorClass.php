@@ -67,21 +67,28 @@
         /**
          * サインイン時の一括バリデーションチェック
          *
-         * @param string $user_name 入力されたユーザー名
-         * @param string $email 入力されたメールアドレス
-         * @param string $passwd 入力されたパスワード
+         * @param array $post_data POSTされたデータ
          * @param object $db PDOインスタンス
          * @return bool or array $errMsg エラーメッセージ
          */
-        public function signUpValidation(string $user_name, string $email, string $passwd, object $db) {
-            $this->addUserNameCheck($user_name, $db);
-            $this->addEmailCheck($email);
-            $this->addPasswdCheck($passwd);
+        public function signUpValidation(array $post_data, object $db) {
+            $this->addUserNameCheck($post_data['user_name'], $db);
+            $this->addEmailCheck($post_data['email']);
+            $this->addPasswdCheck($post_data['passwd']);
 
             if (count($this->errMsg) === 0) {
                 return true;
             } else {
-                return $this->errMsg;
+                return false;
             }
+        }
+
+        /**
+         * エラーメッセージ取得用メソッド
+         *
+         * @return array $errMsg エラーメッセージ
+         */
+        public function getErrorMsg() {
+            return $this->errMsg;
         }
     }

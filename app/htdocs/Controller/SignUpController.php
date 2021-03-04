@@ -6,8 +6,8 @@
     require_once FilePath::LIBRARY . '/UsePDOClass.php';
     require_once FilePath::LIBRARY . '/ValidatorClass.php';
 
-    //エラーメッセージ用の配列を用意
-    $err = [];
+    //エラーメッセージ用の変数を用意
+    $errMsgs = '';
     //ログイン済かどうかを確認するため、最初にDBに接続する
     $db = new DbOperation();
     //バリデーションクラスをインスタンス化
@@ -24,13 +24,15 @@
         //メールアドレス重複メッセージ
         $post_data = filter_input_array(INPUT_POST);
 
-        //$post_dataを配列のまま渡してもいけるか？
-        if ($dv->signUpValidation($post_data['user_name'], $post_data['email'], $post_data['passwd'], $db)) {
+        if ($dv->signUpValidation($post_data, $db)) {
             //$post_dataをdbに登録
             print 'Success!!';
         } else {
             //エラーメッセージを取得する
-            print 'Failed..';
+            $errMsgs = $dv->getErrorMsg();
+            foreach ($errMsgs as $msg) {
+                print $msg;
+            }
         }
     }
 
