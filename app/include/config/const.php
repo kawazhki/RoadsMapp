@@ -11,11 +11,11 @@
     }
 
     class DbConnect {
-        const DB_NAME = 'roadsmapp';
+        const DB_NAME = 'testdb';
         const HOST = 'localhost';
         const UTF = 'utf8';
-        const USER_NAME = 'kawazhki';
-        const PASSWD = 'dena-gogo-roadsmapp';
+        const DB_USER_NAME = 'user';
+        const DB_PASSWD = 'testpass';
     }
 
     class ErrMessage {

@@ -13,6 +13,11 @@
         <!--ここにロゴを挿入-->
         <h1>新規登録</h1>
         <!--ここにエラーメッセージを表示-->
+        <?php if (gettype($errMsgs) === 'array') { ?>
+            <?php foreach ($errMsgs as $msg) { ?>
+                <p class="err_msg"><?php print $msg; ?></p>
+            <?php } ?>
+        <?php } ?>
         <form action="" method="post" class="new_user">
             <input type="text" name="user_name" class="item" placeholder="ユーザー名"><br>
             <input type="text" name="email" class="item" placeholder="メールアドレス"><br>

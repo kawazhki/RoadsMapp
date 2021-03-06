@@ -65,3 +65,9 @@ h1 {
 .login {
     color: #cccccc;
 }
+
+.err_msg {
+    color: red;
+    text-align: center;
+    margin: 0;
+}
