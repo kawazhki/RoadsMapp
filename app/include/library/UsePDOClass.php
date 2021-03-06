@@ -1,12 +1,5 @@
 <?php
     class DbOperation {
-        //ユーザ名、パスワードはダミー表記にしてからpushすること
-        const DB_NAME = 'testdb';
-        const HOST = 'localhost';
-        const UTF = 'utf8';
-        const DB_USER_NAME = 'user';
-        const DB_PASSWD = 'passwd';
-
         private $dbh;
         private $user_name;
         private $email;
@@ -17,9 +10,9 @@
          * インスタンス化時に接続する様コンストラクタにする
          */
         public function __construct() {
-            $dsn = 'mysql:dbname=' . self::DB_NAME . ';host=' . self::HOST . ';charset=' . self::UTF;
+            $dsn = 'mysql:dbname=' . DbConnect::DB_NAME . ';host=' . DbConnect::HOST . ';charset=' . DbConnect::UTF;
             try {
-                $dbh = new PDO($dsn, self::DB_USER_NAME, self::DB_PASSWD);
+                $dbh = new PDO($dsn, DbConnect::DB_USER_NAME, DbConnect::DB_PASSWD);
                 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (Exception $e) {
                 print "接続エラー：{$e->getMessage()}";
@@ -74,11 +67,11 @@
          * user_name重複チェック
          */
         public function userNameDuplicateCheck (): bool {
-            $stt = $this->dbh->prepare('SELECT COUNT(name = :username or NULL) FROM users');
+            $stt = $this->dbh->prepare('SELECT COUNT(username = :username or NULL) FROM testtable');
             $stt->bindValue(':username', $this->getUserName());
             $stt->execute();
             $result = $stt->fetch(PDO::FETCH_COLUMN);
-            if ($result === 0) {
+            if ((int)$result === 0) {
                 return true;
             } else {
                 return false;
@@ -88,12 +81,14 @@
         /**
          * 新規登録用INSERT処理
          */
-        public function insertSignUpDara() {
+        public function insertSignUpData() {
+            $hash = password_hash($this->getPasswd(), PASSWORD_DEFAULT);
+
             try {
-                $stt = $this->dbh->prepare('INSERT INTO users(name, email, hashed_password) VALUES(:username, :email, :passwd)');
+                $stt = $this->dbh->prepare('INSERT INTO testtable(username, email, passwd) VALUES(:username, :email, :passwd)');
                 $stt->bindValue(':username', $this->getUserName());
                 $stt->bindValue(':email', $this->getEmail());
-                $stt->bindValue(':passwd', $this->getPasswd());
+                $stt->bindValue(':passwd', $hash);
                 $stt->execute();
             } catch(PDOException $e) {
                 print "新規登録エラー：{$e->getMessage()}";

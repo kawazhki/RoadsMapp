@@ -22,7 +22,7 @@
             $db->setUserName($user_name);
             if (empty($user_name)) {
                 //空文字チェック
-                $this->errMsg[] = ErrMessage::USER_NAME_INPUT_RULE;
+                $this->errMsg[] = ErrMessage::USER_NAME_EMPTY;
             } elseif (!RegexCheck::addUserName($user_name)) {
                 //入力文字チェック
                 $this->errMsg[] = ErrMessage::USER_NAME_INPUT_RULE;
@@ -71,7 +71,7 @@
          * @param object $db PDOインスタンス
          * @return bool or array $errMsg エラーメッセージ
          */
-        public function signUpValidation(array $post_data, object $db) {
+        public function signUpValidation(array $post_data, object $db): bool {
             $this->addUserNameCheck($post_data['user_name'], $db);
             $this->addEmailCheck($post_data['email']);
             $this->addPasswdCheck($post_data['passwd']);
@@ -88,7 +88,7 @@
          *
          * @return array $errMsg エラーメッセージ
          */
-        public function getErrorMsg() {
+        public function getErrorMsg(): array {
             return $this->errMsg;
         }
     }

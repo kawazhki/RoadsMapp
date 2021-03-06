@@ -1,7 +1,6 @@
 <?php
     session_start();
     require_once '../../include/config/const.php';
-    require_once FilePath::MODEL . '/signUp.php';
     require_once FilePath::LIBRARY . '/RegexClass.php';
     require_once FilePath::LIBRARY . '/UsePDOClass.php';
     require_once FilePath::LIBRARY . '/ValidatorClass.php';
@@ -21,18 +20,17 @@
     */
 
     if (!empty($_POST['commit'])) {
-        //メールアドレス重複メッセージ
+        //ポストデータの取得
         $post_data = filter_input_array(INPUT_POST);
 
         if ($dv->signUpValidation($post_data, $db)) {
             //$post_dataをdbに登録
-            print 'Success!!';
+            $db->setEmail($post_data['email']);
+            $db->setPasswd($post_data['passwd']);
+            $db->insertSignUpData();
         } else {
             //エラーメッセージを取得する
             $errMsgs = $dv->getErrorMsg();
-            foreach ($errMsgs as $msg) {
-                print $msg;
-            }
         }
     }
 
