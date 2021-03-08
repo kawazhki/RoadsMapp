@@ -25,7 +25,7 @@
             <p class="helptext">8文字以上、半角英・数・記号が使えます</p>
             <input type="submit" name="commit" class="item" id="commit" value="RoadsMappに登録する">
         </form>
-        <p class="login">RoadsMappのアカウントを持っている場合は<a href="#">ログイン</a>から</p>
+        <p class="login">RoadsMappのアカウントを持っている場合は<a href="LoginController.php">ログイン</a>から</p>
     </section>
 </body>
 </html>

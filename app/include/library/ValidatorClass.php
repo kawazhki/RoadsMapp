@@ -1,14 +1,14 @@
 <?php
 
     class DataValidation {
-        private $errMsg;
+        private $errMsgs;
 
         /**
          * コンストラクタ
          */
         public function __construct() {
             //エラーメッセージを格納する変数を初期化
-            $this->errMsg = [];
+            $this->errMsgs = [];
         }
 
         /**
@@ -22,13 +22,13 @@
             $db->setUserName($user_name);
             if (empty($user_name)) {
                 //空文字チェック
-                $this->errMsg[] = ErrMessage::USER_NAME_EMPTY;
+                $this->errMsgs[] = ErrMessage::USER_NAME_EMPTY;
             } elseif (!RegexCheck::addUserName($user_name)) {
                 //入力文字チェック
-                $this->errMsg[] = ErrMessage::USER_NAME_INPUT_RULE;
+                $this->errMsgs[] = ErrMessage::USER_NAME_INPUT_RULE;
             } elseif (!$db->userNameDuplicateCheck()) {
                 //重複チェック
-                $this->errMsg[] = $user_name . ErrMessage::DUPLICATE_USER_NAME;
+                $this->errMsgs[] = $user_name . ErrMessage::DUPLICATE_USER_NAME;
             }
         }
 
@@ -41,10 +41,10 @@
         public function addEmailCheck(string $email) {
             if (empty($email)) {
                 //空文字チェック
-                $this->errMsg[] = ErrMessage::EMAIL_EMPTY;
+                $this->errMsgs[] = ErrMessage::EMAIL_EMPTY;
             } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 //入力文字チェック
-                $this->errMsg[] = ErrMessage::EMAIL_INPUT_RULE;
+                $this->errMsgs[] = ErrMessage::EMAIL_INPUT_RULE;
             }
         }
 
@@ -57,10 +57,10 @@
         public function addPasswdCheck(string $passwd) {
             if (empty($passwd)) {
                 //空入力チェック
-                $this->errMsg[] = ErrMessage::PASSWD_EMPTY;
+                $this->errMsgs[] = ErrMessage::PASSWD_EMPTY;
             } elseif (!RegexCheck::addPasswd($passwd)) {
                 //入力文字チェック
-                $this->errMsg[] = ErrMessage::PASSWD_INPUT_RULE;
+                $this->errMsgs[] = ErrMessage::PASSWD_INPUT_RULE;
             }
         }
 
@@ -69,17 +69,38 @@
          *
          * @param array $post_data POSTされたデータ
          * @param object $db PDOインスタンス
-         * @return bool or array $errMsg エラーメッセージ
+         * @return bool
          */
         public function signUpValidation(array $post_data, object $db): bool {
             $this->addUserNameCheck($post_data['user_name'], $db);
             $this->addEmailCheck($post_data['email']);
             $this->addPasswdCheck($post_data['passwd']);
 
-            if (count($this->errMsg) === 0) {
+            if (count($this->errMsgs) === 0) {
                 return true;
             } else {
                 return false;
+            }
+        }
+
+        /**
+         * ログイン時のバリデーションチェック
+         *
+         * @param array POSTされたデータ
+         * @param object $db PDOインスタンス
+         * @return bool
+         */
+        public function loginValidation(array $post_data, object $db):bool {
+            $db->setUserName($post_data['user_name']);
+            $db->setPassw($post_data['passwd']);
+            if(empty($post_data['user_name']) || empty($passwd)) {
+                $this->errMsgs[] = ErrMessage::POST_DATA_EMPTY;
+                return false;
+            } elseif (!$db->authenticationCheck($post_data)) {
+                $this->errMsgs[] = ErrMessage::AUTHENTICATION_FAILURE;
+                return false;
+            } else {
+                return true;
             }
         }
 
@@ -88,7 +109,7 @@
          *
          * @return array $errMsg エラーメッセージ
          */
-        public function getErrorMsg(): array {
-            return $this->errMsg;
+        public function getErrorMsgs(): array {
+            return $this->errMsgs;
         }
     }

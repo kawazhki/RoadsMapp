@@ -94,4 +94,21 @@
                 print "新規登録エラー：{$e->getMessage()}";
             }
         }
+
+        /**
+         * ログインチェック
+         */
+        public function authenticationCheck() {
+            $stt = $this->dbh->prepare('SELECT username, passwd FROM testtable WHERE username = :username');
+            $stt->bindValue(':username', $this->getUserName());
+            $stt->execute();
+            $result = $stt->fetch(PDO::FETCH_ASSOC);
+            if (!$result) {
+                return false;
+            } elseif (!password_verify($this->getPasswd(), $result['passwd'])) {
+                return false;
+            } else {
+                return true;
+            }
+        }
     }

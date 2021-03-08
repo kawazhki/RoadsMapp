@@ -30,7 +30,7 @@
             $db->insertSignUpData();
         } else {
             //エラーメッセージを取得する
-            $errMsgs = $dv->getErrorMsg();
+            $errMsgs = $dv->getErrorMsgs();
         }
     }
 

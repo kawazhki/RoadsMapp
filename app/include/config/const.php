@@ -14,8 +14,8 @@
         const DB_NAME = 'testdb';
         const HOST = 'localhost';
         const UTF = 'utf8';
-        const DB_USER_NAME = 'user';
-        const DB_PASSWD = 'testpass';
+        const DB_USER_NAME = 'kawazhki';
+        const DB_PASSWD = 'pass';
     }
 
     class ErrMessage {

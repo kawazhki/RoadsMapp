@@ -23,14 +23,12 @@
         //ポストデータの取得
         $post_data = filter_input_array(INPUT_POST);
 
-        if ($dv->signUpValidation($post_data, $db)) {
-            //$post_dataをdbに登録
-            $db->setEmail($post_data['email']);
-            $db->setPasswd($post_data['passwd']);
-            $db->insertSignUpData();
+        if ($dv->loginValidation($post_data, $db)) {
+            //$ホーム画面へ移行
+
         } else {
             //エラーメッセージを取得する
-            $errMsgs = $dv->getErrorMsg();
+            $errMsgs = $dv->getErrorMsgs();
         }
     }
 

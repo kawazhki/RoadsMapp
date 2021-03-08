@@ -19,7 +19,7 @@
             <?php } ?>
         <?php } ?>
         <form action="" method="post" class="new_user">
-            <input type="text" name="identity" class="item" placeholder="ユーザー名 または メールアドレス"><br>
+            <input type="text" name="user_name" class="item" placeholder="ユーザー名"><br>
             <input type="password" name="passwd" class="item" placeholder="パスワード"><br>
             <input type="submit" name="commit" class="item" id="commit" value="RoadsMappにログイン">
         </form>
