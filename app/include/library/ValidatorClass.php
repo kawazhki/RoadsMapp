@@ -92,11 +92,11 @@
          */
         public function loginValidation(array $post_data, object $db):bool {
             $db->setUserName($post_data['user_name']);
-            $db->setPassw($post_data['passwd']);
-            if(empty($post_data['user_name']) || empty($passwd)) {
+            $db->setPasswd($post_data['passwd']);
+            if(empty($post_data['user_name']) || empty($post_data['passwd'])) {
                 $this->errMsgs[] = ErrMessage::POST_DATA_EMPTY;
                 return false;
-            } elseif (!$db->authenticationCheck($post_data)) {
+            } elseif (!$db->authenticationCheck()) {
                 $this->errMsgs[] = ErrMessage::AUTHENTICATION_FAILURE;
                 return false;
             } else {

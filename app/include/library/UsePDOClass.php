@@ -98,7 +98,7 @@
         /**
          * ログインチェック
          */
-        public function authenticationCheck() {
+        public function authenticationCheck():bool {
             $stt = $this->dbh->prepare('SELECT username, passwd FROM testtable WHERE username = :username');
             $stt->bindValue(':username', $this->getUserName());
             $stt->execute();

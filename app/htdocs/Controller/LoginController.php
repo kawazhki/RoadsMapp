@@ -25,7 +25,7 @@
 
         if ($dv->loginValidation($post_data, $db)) {
             //$ホーム画面へ移行
-
+            print 'success!!';
         } else {
             //エラーメッセージを取得する
             $errMsgs = $dv->getErrorMsgs();
